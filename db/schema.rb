@@ -14,6 +14,12 @@ ActiveRecord::Schema.define(:version => 20081211172006) do
   create_table "playbills", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+    t.string   "title"
+    t.text     "description"
+    t.string   "author"
+    t.string   "version"
+    t.string   "size"
   end
 
 end
