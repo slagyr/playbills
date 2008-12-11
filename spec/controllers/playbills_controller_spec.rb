@@ -70,22 +70,22 @@ describe PlaybillsController do
       end
       
       it "should render the file associated with the id" do
+        @playbill.should_receive(:thumbnail_path).and_return("path_to_thumbnail")
+        controller.should_receive(:send_file).with("path_to_thumbnail", :type => Mime::Type.lookup_by_extension("thumbnail").to_s, :disposition => "inline")
         do_get
-        response.should redirect_to("/playbill_data/#{@playbill.id}/#{@playbill.name}.png")
-        response.headers["type"].should include("image/png")
       end
       
     end
-    
+
     context "getting .llp" do
       def do_get
         get :show, :id => "1", :format => "llp"
       end
       
       it "should render the llp file associated with the id" do
+        @playbill.should_receive(:llp_path).and_return("path_to_llp")
+        controller.should_receive(:send_file).with("path_to_llp", :type => Mime::Type.lookup_by_extension("llp").to_s)
         do_get
-        response.should redirect_to("/playbill_data/#{@playbill.id}/#{@playbill.name}.llp")
-        response.headers["type"].should include("application/x-limelight")
       end
       
     end

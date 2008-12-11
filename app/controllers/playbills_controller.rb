@@ -22,10 +22,10 @@ class PlaybillsController < ResourceController::Base
       render :inline => object.to_json
     end
     wants.thumbnail do
-      redirect_to("/playbill_data/#{@playbill.id}/#{@playbill.name}.png")
+      send_file(@playbill.thumbnail_path, :type => Mime::Type.lookup_by_extension("thumbnail").to_s, :disposition=>'inline')
     end
     wants.llp do
-      redirect_to("/playbill_data/#{@playbill.id}/#{@playbill.name}.llp")
+      send_file(@playbill.llp_path, :type => Mime::Type.lookup_by_extension("llp").to_s)
     end
   end
 
