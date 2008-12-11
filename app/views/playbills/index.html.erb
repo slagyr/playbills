@@ -1,0 +1,17 @@
+<h1>Listing Playbills</h1>
+
+<table>
+  <tr>
+  </tr>
+  <%- @playbills.each do |playbill|%>
+    <tr>
+    
+      <td><%=link_to 'Show', object_url(playbill) %></td>
+      <td><%=link_to 'Edit', edit_object_url(playbill) %></td>
+      <td><%=link_to 'Destroy', object_url(playbill), :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+<br/>
+
+<%= link_to 'New Playbill', new_object_url %>
