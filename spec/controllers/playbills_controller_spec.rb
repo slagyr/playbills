@@ -36,7 +36,7 @@ describe PlaybillsController do
   describe "handling GET /playbills/1" do
 
     before(:each) do
-      @playbill = mock_model(Playbill)
+      @playbill = mock_model(Playbill, :name =>'super_cool_playbill')
       Playbill.stub!(:find).and_return(@playbill)
     end
   
@@ -63,6 +63,33 @@ describe PlaybillsController do
       do_get
       assigns[:playbill].should equal(@playbill)
     end
+    
+    context "getting .thumbnail" do
+      def do_get
+        get :show, :id => "1", :format => "thumbnail"
+      end
+      
+      it "should render the file associated with the id" do
+        do_get
+        response.should redirect_to("/playbill_data/#{@playbill.id}/#{@playbill.name}.png")
+        response.headers["type"].should include("image/png")
+      end
+      
+    end
+    
+    context "getting .llp" do
+      def do_get
+        get :show, :id => "1", :format => "llp"
+      end
+      
+      it "should render the llp file associated with the id" do
+        do_get
+        response.should redirect_to("/playbill_data/#{@playbill.id}/#{@playbill.name}.llp")
+        response.headers["type"].should include("application/x-limelight")
+      end
+      
+    end
+    
   end
 
   describe "handling GET /playbills/new" do

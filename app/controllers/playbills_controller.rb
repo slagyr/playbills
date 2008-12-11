@@ -21,6 +21,12 @@ class PlaybillsController < ResourceController::Base
     wants.js do
       render :inline => object.to_json
     end
+    wants.thumbnail do
+      redirect_to("/playbill_data/#{@playbill.id}/#{@playbill.name}.png")
+    end
+    wants.llp do
+      redirect_to("/playbill_data/#{@playbill.id}/#{@playbill.name}.llp")
+    end
   end
 
 end
