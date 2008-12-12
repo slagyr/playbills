@@ -31,6 +31,7 @@ Rails::Initializer.run do |config|
   # config.gem "rspec", :version => '1.1.11'
   # config.gem "rspec-rails", :version => '1.1.11'
   config.gem "resource_controller"
+  config.gem "playbills"
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
   # :all can be used as a placeholder for all plugins not explicitly named
