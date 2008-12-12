@@ -14,6 +14,8 @@ class ScaffoldResourceGenerator < Rails::Generator::NamedBase
   alias_method  :controller_table_name, :controller_plural_name
 
   def initialize(runtime_args, runtime_options = {})
+p runtimes_args
+p runtime_options    
     super
 
     if @rspec = has_rspec?
