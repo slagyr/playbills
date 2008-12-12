@@ -1,5 +1,4 @@
-test
-log
-stories
-example_app/public/playbill_data/*
-pkg
+example/test/*
+example/log/*
+example/stories/*
+pkg/*
