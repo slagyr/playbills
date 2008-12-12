@@ -28,8 +28,8 @@ Rails::Initializer.run do |config|
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
   
-  config.gem "rspec", :version => '1.1.11'
-  config.gem "rspec-rails", :version => '1.1.11'
+  config.gem "rspec", :version => '1.1.11', :lib => "spec/rails"
+  config.gem "rspec-rails", :version => '1.1.11', :lib => "spec"
   config.gem "resource_controller"
   config.gem "playbills"
 

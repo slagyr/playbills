@@ -39,10 +39,10 @@ task :clean do
   system "rm -rf pkg"
 end
 
-desc "install in example_app"
+desc "install in example"
 task :install => [:clean, :gem] do
   system "sudo gem uninstall playbills"
   system "sudo gem install pkg/#{PKG_FILE_NAME}"
-  system "rm -rf example_app/vendor/gems/playbills*"
-  system "cd example_app && rake gems:unpack playbills"
+  system "rm -rf example/vendor/gems/playbills*"
+  system "cd example && rake gems:unpack playbills"
 end
