@@ -1,4 +1,5 @@
 test
 log
 stories
-public/playbill_data/*
+example_app/public/playbill_data/*
+pkg
