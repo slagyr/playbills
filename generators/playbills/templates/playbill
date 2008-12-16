@@ -39,7 +39,7 @@ def save_thumbnail(playbill, production_path)
   end
 end
 
-require File.expand_path(File.dirname(__FILE__) + "../config/environment.rb")
+require File.expand_path(File.dirname(__FILE__) + "/../config/environment.rb")
 process(llp_name)
 
 
