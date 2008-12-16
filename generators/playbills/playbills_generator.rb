@@ -15,6 +15,7 @@ class PlaybillsGenerator < Rails::Generator::Base
       m.template('playbill_spec.rb', File.join('spec', 'models', "playbill.rb"))
       m.template('playbills_controller.rb', File.join('app', 'controllers', "playbills_controller.rb"))
       m.template('playbills_controller_spec.rb', File.join('spec', 'controllers', "playbills_controller_spec.rb"))
+      m.template('playbill', File.join('script', 'playbill'))
     end
   end
 
