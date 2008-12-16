@@ -1,10 +1,7 @@
 #!/usr/bin/env ruby
 
-llp_name = ARGV[0]
-raise "Please provide the path to a .llp file." if llp_name.nil? || !File.exist?(llp_name)
-
 def process(llp)
-  unpack_output = `jruby -S limelight unpack #{llp_name}`
+  unpack_output = `jruby -S limelight unpack #{llp}`
   production_path = unpack_output.split(":")[1].strip
   
   require 'playbill'
@@ -39,6 +36,8 @@ def save_thumbnail(playbill, production_path)
   end
 end
 
+llp_name = ARGV[0]
+raise "Please provide the path to a .llp file." if llp_name.nil? || !File.exist?(llp_name)
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment.rb")
 process(llp_name)
 
