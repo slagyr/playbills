@@ -5,8 +5,9 @@ def process(llp)
   production_path = unpack_output.split(":")[1].strip
   
   require 'playbill'
+  name = File.basename(llp).gsub(".llp", "")
   info = load_info(production_path)
-  info[:name] = File.basename(llp).gsub(".llp", "")
+  info[:name] = name
   info[:size] = File.size(llp).to_s
   
   playbill = Playbill.find_by_name(name)
