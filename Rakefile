@@ -41,8 +41,10 @@ end
 
 desc "install in example"
 task :install => [:clean, :gem] do
+  system "git commit -a -m 'installing'"
   system "sudo gem uninstall playbills"
   system "sudo gem install pkg/#{PKG_FILE_NAME}"
-  system "rm -rf example/vendor/gems/playbills*"
+  system "rm -rf example"
+  system "git checkout example"
   system "cd example && rake gems:unpack playbills"
 end
