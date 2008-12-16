@@ -8,7 +8,13 @@ def process(llp)
   info = load_info(production_path)
   info[:name] = File.basename(llp).gsub(".llp", "")
   info[:size] = File.size(llp).to_s
-  playbill = Playbill.create(info)
+  
+  playbill = Playbill.find_by_name(name)
+  if playbill
+    playbill.update_attributes(info)
+  else
+    playbill = Playbill.create(info) 
+  end
   
   playbill.establish_data_dir
   save_llp(playbill, llp)
