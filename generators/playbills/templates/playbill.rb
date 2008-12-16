@@ -5,7 +5,7 @@ class Playbill < ActiveRecord::Base
   end
   
   def data_dir
-    return File.join(Playbill.data_dir, id.to_s)
+    return File.join(Playbill.data_root, id.to_s)
   end
   
   def establish_data_dir
@@ -13,11 +13,11 @@ class Playbill < ActiveRecord::Base
   end
   
   def thumbnail_path
-    File.join(PLAYBILL_ROOT, id.to_s, "#{name}.png")
+    File.join(data_dir, "thumbnail.png")
   end
 
   def llp_path
-    File.join(PLAYBILL_ROOT, id.to_s, "#{name}.llp")
+    File.join(data_dir, "#{name}.llp")
   end
   
   private #################################################

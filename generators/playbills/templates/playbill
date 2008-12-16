@@ -26,7 +26,7 @@ def load_info(production_path)
 end
 
 def save_llp(playbill, llp)
-  system "cp llp #{playbill.llp_path}"
+  system "cp #{llp} #{playbill.llp_path}"
 end
 
 def save_thumbnail(playbill, production_path)
