@@ -1,0 +1,46 @@
+#!/usr/bin/env ruby
+
+llp_name = ARGV[0]
+raise "Please provide the path to a .llp file." if llp_name.nil? || !File.exist?(llp_name)
+
+def process(llp)
+  unpack_output = `jruby -S limelight unpack #{llp_name}`
+  production_path = unpack_output.split(":")[1].strip
+  
+  require 'playbill'
+  info = load_info(production_path)
+  info[:name] = File.basename(llp).gsub(".llp", "")
+  info[:size] = File.size(llp).to_s
+  playbill = Playbill.create(info)
+  
+  playbill.establish_data_dir
+  save_llp(playbill, llp)
+  save_thumbnail(playbill, production_path)
+end
+
+def load_info(production_path)
+  info_path = File.join(production_path, "__resources", "info.yaml")
+  if File.exist?(info_path)
+    require 'yaml'
+    info = YAML.load(IO.read(info_path))
+    return info
+  end
+  return {}
+end
+
+def save_llp(playbill, llp)
+  system "cp llp #{playbill.llp_path}"
+end
+
+def save_thumbnail(playbill, production_path)
+  thumbnail_path = File.join(production_path, "__resources", "thumbnail.png")
+  if File.exist?(thumbnail_path)
+    system "cp #{thumbnail_path} #{playbill.thumbnail_path}"
+  end
+end
+
+require File.expand_path(File.dirname(__FILE__) + "../config/environment.rb")
+process(llp_name)
+
+
+
