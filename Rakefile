@@ -47,4 +47,6 @@ task :install => [:clean, :gem] do
   system "rm -rf example"
   system "git checkout example"
   system "cd example && rake gems:unpack playbills"
+  system "cd example && script/generate playbills"
+  system "cd example && rake db:migrate"
 end

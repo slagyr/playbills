@@ -12,24 +12,24 @@ class Playbill < ActiveRecord::Base
     establish_dir(data_dir)
   end
   
-  def thumbnail_path
+  def thumbnail_file
     File.join(data_dir, "thumbnail.png")
   end
   
-  def thumbnail_url
+  def thumbnail_path
     return "/playbills/#{id}.thumbnail"
   end
 
-  def llp_path
+  def llp_file
     File.join(data_dir, "#{name}.llp")
   end
   
-  def llp_url
+  def llp_path
     return "/playbills/#{id}.llp"
   end
   
   def to_json(options={})
-    options[:methods] = [:llp_url, :thumbnail_url]
+    options[:methods] = [:llp_path, :thumbnail_path]
     super(options)
   end
   

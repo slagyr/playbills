@@ -22,10 +22,10 @@ class PlaybillsController < ResourceController::Base
       render :inline => object.to_json
     end
     wants.thumbnail do
-      send_file(@playbill.thumbnail_path, :type => Mime::Type.lookup_by_extension("thumbnail").to_s, :disposition=>'inline')
+      send_file(@playbill.thumbnail_file, :type => Mime::Type.lookup_by_extension("thumbnail").to_s, :disposition=>'inline')
     end
     wants.llp do
-      send_file(@playbill.llp_path, :type => Mime::Type.lookup_by_extension("llp").to_s)
+      send_file(@playbill.llp_file, :type => Mime::Type.lookup_by_extension("llp").to_s)
     end
   end
 
